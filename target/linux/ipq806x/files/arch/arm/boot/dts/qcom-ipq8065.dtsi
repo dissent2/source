@@ -515,7 +515,7 @@
 			reg = <0x2011000 0x1000>;
 			clock-output-names = "acpu_l2_aux";
  		};
- 
+
 		saw0: regulator@2089000 {
 			compatible = "qcom,saw2";
 			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
@@ -1009,7 +1009,6 @@
 			status = "disabled";
 		};
 
-
 		nss_common: syscon@03000000 {
 			compatible = "syscon";
 			reg = <0x03000000 0x0000FFFF>;
@@ -1176,7 +1175,7 @@
 		syscon = <&sfpb_mutex_block 4 4>;
 
 		#hwlock-cells = <1>;
- 	};
+	};
 
 	smem {
 		compatible = "qcom,smem";
