@@ -888,7 +888,7 @@
 		};
 
 		hs_phy_1: phy@100f8800 {
-			compatible = "qcom,dwc3-hsphy","qcom,dwc3-hsphy-ipq8064";
+			compatible = "qcom,dwc3-hs-usb-phy";
 			reg = <0x100f8800 0x30>;
 			clocks = <&gcc USB30_1_UTMI_CLK>;
 			clock-names = "utmi";
@@ -898,7 +898,7 @@
 		};
 
 		ss_phy_1: phy@100f8830 {
-			compatible = "qcom,dwc3-ssphy","qcom,dwc3-ssphy-ipq8064";
+			compatible = "qcom,dwc3-ss-usb-phy";
 			reg = <0x100f8830 0x30>;
 
 			clocks = <&gcc USB30_1_MASTER_CLK>;
@@ -909,7 +909,7 @@
 		};
 
 		hs_phy_0: phy@110f8800 {
-			compatible = "qcom,dwc3-hsphy","qcom,dwc3-hsphy-ipq8064";
+			compatible = "qcom,dwc3-hs-usb-phy","qcom,dwc3-hsphy-ipq8064";
 			reg = <0x110f8800 0x30>;
 			clocks = <&gcc USB30_0_UTMI_CLK>;
 			clock-names = "utmi";
@@ -919,7 +919,7 @@
 		};
 
 		ss_phy_0: phy@110f8830 {
-			compatible = "qcom,dwc3-ssphy","qcom,dwc3-ssphy-ipq8064";
+			compatible = "qcom,dwc3-ss-usb-phy";
 			reg = <0x110f8830 0x30>;
 
 			clocks = <&gcc USB30_0_MASTER_CLK>;
