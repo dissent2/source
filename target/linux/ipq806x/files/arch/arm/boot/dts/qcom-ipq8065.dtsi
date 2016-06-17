@@ -731,6 +731,94 @@
 			reg = <0x01200600 0x100>;
 		};
 
+		hs_phy_1: phy@100f8800 {
+			compatible = "qcom,dwc3-hs-usb-phy";
+			reg = <0x100f8800 0x30>;
+			clocks = <&gcc USB30_1_UTMI_CLK>;
+			clock-names = "utmi";
+			#phy-cells = <0>;
+
+			status = "disabled";
+		};
+
+		ss_phy_1: phy@100f8830 {
+			compatible = "qcom,dwc3-ss-usb-phy";
+			reg = <0x100f8830 0x30>;
+
+			clocks = <&gcc USB30_1_MASTER_CLK>;
+			clock-names = "ref";
+			#phy-cells = <0>;
+
+			status = "disabled";
+		};
+
+		hs_phy_0: phy@110f8800 {
+			compatible = "qcom,dwc3-hs-usb-phy";
+			reg = <0x110f8800 0x30>;
+			clocks = <&gcc USB30_0_UTMI_CLK>;
+			clock-names = "utmi";
+			#phy-cells = <0>;
+
+			status = "disabled";
+		};
+
+		ss_phy_0: phy@110f8830 {
+			compatible = "qcom,dwc3-ss-usb-phy";
+			reg = <0x110f8830 0x30>;
+
+			clocks = <&gcc USB30_0_MASTER_CLK>;
+			clock-names = "ref";
+			#phy-cells = <0>;
+
+			status = "disabled";
+		};
+
+		usb3_0: usb30@0 {
+			compatible = "qcom,dwc3";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			clocks = <&gcc USB30_0_MASTER_CLK>;
+			clock-names = "core";
+
+			ranges;
+
+			status = "disabled";
+			resets = <&gcc USB30_0_MASTER_RESET>;
+			reset-names = "usb30_mstr_rst";
+
+			dwc3@11000000 {
+				compatible = "snps,dwc3";
+				reg = <0x11000000 0xcd00>;
+				interrupts = <0 110 0x4>;
+				phys = <&hs_phy_0>, <&ss_phy_0>;
+				phy-names = "usb2-phy", "usb3-phy";
+				tx-fifo-resize;
+				dr_mode = "host";
+			};
+		};
+
+		usb3_1: usb30@1 {
+			compatible = "qcom,dwc3";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			clocks = <&gcc USB30_1_MASTER_CLK>;
+			clock-names = "core";
+
+			ranges;
+
+			status = "disabled";
+
+			dwc3@10000000 {
+				compatible = "snps,dwc3";
+				reg = <0x10000000 0xcd00>;
+				interrupts = <0 205 0x4>;
+				phys = <&hs_phy_1>, <&ss_phy_1>;
+				phy-names = "usb2-phy", "usb3-phy";
+				tx-fifo-resize;
+				dr_mode = "host";
+			};
+		};
+
 		pcie0: pci@1b500000 {
 			compatible = "qcom,pcie-v0";
 			reg = <0x1b500000 0x1000
@@ -887,93 +975,6 @@
 			status = "disabled";
 		};
 
-		hs_phy_1: phy@100f8800 {
-			compatible = "qcom,dwc3-hs-usb-phy";
-			reg = <0x100f8800 0x30>;
-			clocks = <&gcc USB30_1_UTMI_CLK>;
-			clock-names = "utmi";
-			#phy-cells = <0>;
-
-			status = "disabled";
-		};
-
-		ss_phy_1: phy@100f8830 {
-			compatible = "qcom,dwc3-ss-usb-phy";
-			reg = <0x100f8830 0x30>;
-
-			clocks = <&gcc USB30_1_MASTER_CLK>;
-			clock-names = "ref";
-			#phy-cells = <0>;
-
-			status = "disabled";
-		};
-
-		hs_phy_0: phy@110f8800 {
-			compatible = "qcom,dwc3-hs-usb-phy","qcom,dwc3-hsphy-ipq8064";
-			reg = <0x110f8800 0x30>;
-			clocks = <&gcc USB30_0_UTMI_CLK>;
-			clock-names = "utmi";
-			#phy-cells = <0>;
-
-			status = "disabled";
-		};
-
-		ss_phy_0: phy@110f8830 {
-			compatible = "qcom,dwc3-ss-usb-phy";
-			reg = <0x110f8830 0x30>;
-
-			clocks = <&gcc USB30_0_MASTER_CLK>;
-			clock-names = "ref";
-			#phy-cells = <0>;
-
-			status = "disabled";
-		};
-
-		usb3_0: usb30@0 {
-			compatible = "qcom,dwc3";
-			#address-cells = <1>;
-			#size-cells = <1>;
-			clocks = <&gcc USB30_0_MASTER_CLK>;
-			clock-names = "core";
-
-			ranges;
-
-			status = "disabled";
-			resets = <&gcc USB30_0_MASTER_RESET>;
-			reset-names = "usb30_mstr_rst";
-
-			dwc3@11000000 {
-				compatible = "snps,dwc3";
-				reg = <0x11000000 0xcd00>;
-				interrupts = <0 110 0x4>;
-				usb-phy = <&hs_phy_0>, <&ss_phy_0>;
-				phy-names = "usb2-phy", "usb3-phy";
-				tx-fifo-resize;
-				dr_mode = "host";
-			};
-		};
-
-		usb3_1: usb30@1 {
-			compatible = "qcom,dwc3";
-			#address-cells = <1>;
-			#size-cells = <1>;
-			clocks = <&gcc USB30_1_MASTER_CLK>;
-			clock-names = "core";
-
-			ranges;
-
-			status = "disabled";
-
-			dwc3@10000000 {
-				compatible = "snps,dwc3";
-				reg = <0x10000000 0xcd00>;
-				interrupts = <0 205 0x4>;
-				usb-phy = <&hs_phy_1>, <&ss_phy_1>;
-				phy-names = "usb2-phy", "usb3-phy";
-				tx-fifo-resize;
-				dr_mode = "host";
-			};
-		};
 		adm_dma: dma@18300000 {
 			compatible = "qcom,adm";
 			reg = <0x18300000 0x100000>;
