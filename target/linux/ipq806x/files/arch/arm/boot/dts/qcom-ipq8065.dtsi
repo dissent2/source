@@ -735,7 +735,7 @@
 			compatible = "qcom,dwc3-hs-usb-phy";
 			reg = <0x100f8800 0x30>;
 			clocks = <&gcc USB30_1_UTMI_CLK>;
-			clock-names = "utmi";
+			clock-names = "ref";
 			#phy-cells = <0>;
 
 			status = "disabled";
@@ -755,7 +755,7 @@
 			compatible = "qcom,dwc3-hs-usb-phy";
 			reg = <0x110f8800 0x30>;
 			clocks = <&gcc USB30_0_UTMI_CLK>;
-			clock-names = "utmi";
+			clock-names = "ref";
 			#phy-cells = <0>;
 
 			status = "disabled";
