@@ -196,7 +196,7 @@
 				read-only;
 			};
 
-			artbak: artbak@1340000 {
+			artbak: art@1340000 {
 				label = "artbak";
 				reg = <0x1340000 0x0140000>;
 				read-only;
@@ -218,8 +218,8 @@
 				read-only;
 			};
 
-			reserved@7900000 {
-				label = "reserved";
+			reserve@7900000 {
+				label = "reserve";
 				reg = <0x7900000 0x0700000>;
 				read-only;
 			};
